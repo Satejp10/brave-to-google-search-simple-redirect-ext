@@ -1,40 +1,144 @@
-# Brave to Google Search Simple Redirect Extension
+# 🔍 Brave to Google — Search Redirect Extension
 
-## Overview
+<p align="center">
+  <img src="icons/icon128.png" alt="Extension Icon" width="128" height="128" />
+</p>
 
-This browser extension allows users of the Brave browser to redirect all search queries to Google. This is useful for those who prefer Google’s search results but enjoy the privacy features of the Brave browser.
+<p align="center">
+  <strong>One click to search the same query on Google — right from Brave Search.</strong>
+</p>
 
-## Features
-- **Seamless redirection**: Automatically redirects search queries typed into the address bar.
-- **Customizable behavior**: Users can enable or disable the redirect feature in the options page.
-- **Privacy focused**: The extension does not track user searches or data.
+<p align="center">
+  <img src="https://img.shields.io/badge/Manifest-V3-blue?style=flat-square" alt="Manifest V3" />
+  <img src="https://img.shields.io/badge/Platform-Chromium-orange?style=flat-square" alt="Chromium" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="MIT License" />
+</p>
 
-## Installation
-To install the extension:
-1. Download the latest release from the [Releases page](https://github.com/Satejp10/brave-to-google-search-simple-redirect-ext/releases).
-2. Open the Brave browser and navigate to `chrome://extensions/`.
-3. Enable "Developer mode" by toggling the switch in the upper right corner.
-4. Click on "Load unpacked" and select the extracted extension folder.
-5. The extension should now be installed and active.
+---
 
-## Usage
-Once the extension is installed:
-- Simply type your search query in the Brave address bar.
-- The extension will redirect your search to Google results page.
+## ✨ What It Does
 
-## Options
-To customize the extension's behavior:
-1. Right-click the extension icon in the browser toolbar.
-2. Select "Options" from the context menu.
-3. Adjust the settings according to your preferences.
+Adds a **Google "G" logo button** to the right side of the search bar on [Brave Search](https://search.brave.com). Clicking it instantly opens **Google Search** with the exact same query — no copy-pasting needed.
 
-## Troubleshooting
-If you encounter issues:
-- Ensure that the extension is enabled in the browser settings.
-- Check for updates in case of unexpected behavior.
+### Before & After
 
-## Contributing
-Contributions are welcome! Please submit a pull request or open an issue to discuss potential improvements.
+| Without Extension | With Extension |
+|---|---|
+| `[Search Bar] [X] [🔍] [AI]` | `[Search Bar] [X] [🔍] [AI]` **`[G]`** |
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+---
+
+## 🚀 Features
+
+- 🎯 **One-click redirect** — Search the same query on Google instantly
+- 🔄 **Persistent button** — Stays visible even when Brave's Svelte framework re-renders the page
+- 🌙 **Dark mode support** — Adapts to both light and dark themes automatically
+- 📱 **Responsive** — Works across different screen sizes and resolutions
+- ⚡ **Lightweight** — No background scripts, no permissions, no tracking
+- 🔗 **SPA-aware** — Updates automatically when you change queries or navigate tabs
+
+---
+
+## 📦 Installation
+
+### From Source (Developer Mode)
+
+1. **Clone** this repository:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/brave-to-google-ext.git
+   ```
+
+2. Open your Chromium-based browser and navigate to:
+   ```
+   chrome://extensions/
+   ```
+   > For Brave, use `brave://extensions/`
+
+3. Enable **Developer mode** (toggle in the top-right corner)
+
+4. Click **"Load unpacked"**
+
+5. Select the cloned `brave-to-google-ext` folder
+
+6. Visit [Brave Search](https://search.brave.com/search?q=hello+world) — the Google button should appear! 🎉
+
+---
+
+## 🗂️ Project Structure
+
+```
+brave-to-google-ext/
+├── manifest.json      # Extension manifest (Manifest V3)
+├── content.js         # Content script — injects the Google button
+├── styles.css         # Button styling with dark mode support
+├── icons/
+│   ├── icon16.png     # Toolbar icon
+│   ├── icon48.png     # Extensions page icon
+│   └── icon128.png    # Chrome Web Store icon
+└── README.md
+```
+
+---
+
+## ⚙️ How It Works
+
+1. The **content script** (`content.js`) runs on all `search.brave.com` pages
+2. It extracts the search query from the URL parameter `?q=`
+3. A Google "G" logo button is injected **to the right of the search bar**
+4. A `MutationObserver` monitors the DOM — if Brave's Svelte framework re-renders and removes the button, it's **automatically re-injected**
+5. Clicking the button navigates to `https://www.google.com/search?q=<your query>`
+
+---
+
+## 🔒 Privacy & Permissions
+
+This extension requires **zero permissions**:
+
+| Permission | Required? | Why |
+|---|---|---|
+| `activeTab` | ❌ No | Not needed |
+| `storage` | ❌ No | Nothing stored |
+| `cookies` | ❌ No | No cookies accessed |
+| `host_permissions` | ❌ No | Uses content scripts only |
+
+- ✅ No data is collected, stored, or transmitted
+- ✅ No background service worker
+- ✅ No external API calls
+- ✅ Fully open source — audit the code yourself
+
+---
+
+## 🌐 Browser Compatibility
+
+| Browser | Supported |
+|---|---|
+| Brave | ✅ |
+| Google Chrome | ✅ |
+| Microsoft Edge | ✅ |
+| Opera | ✅ |
+| Vivaldi | ✅ |
+| Firefox | ❌ (uses Manifest V3 Chromium format) |
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to:
+
+1. Fork the repo
+2. Create a feature branch (`git checkout -b feature/my-feature`)
+3. Commit your changes (`git commit -m 'Add my feature'`)
+4. Push to the branch (`git push origin feature/my-feature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+<p align="center">
+  Made with ❤️ for people who use Brave Search but sometimes need Google
+</p>
